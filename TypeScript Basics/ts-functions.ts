@@ -97,3 +97,15 @@ function greetWithRestParams(greeting: string, ...names: string[]) {
 console.log(greetWithRestParams("Hello", "Steve", "Bill")); // returns "Hello Steve, Bill!"
 
 console.log(greetWithRestParams("Hello"));// returns "Hello !"
+
+
+
+// Rest Parameters and Arrow Functions
+let greetArrowFn = (greeting: string, ...names: string[]) => {
+    return greeting + " " + names.join(", ") + "!";
+}
+
+
+console.log(greetArrowFn("Hello", "Steve", "Bill")); // returns "Hello Steve, Bill!"
+
+console.log(greetArrowFn("Hello"));// returns "Hello !"
