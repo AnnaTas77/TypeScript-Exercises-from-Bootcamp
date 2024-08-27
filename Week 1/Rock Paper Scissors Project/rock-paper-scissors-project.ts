@@ -34,7 +34,7 @@ Log the values of player1, player2, and result to verify your game plays correct
 
 /** */
 
-const randomNumber = (): string  => {
+const randomNumber = (): string => {
   const choice = Math.floor(Math.random() * 3);
   if (choice === 0) return "rock";
   if (choice === 1) return "paper";
