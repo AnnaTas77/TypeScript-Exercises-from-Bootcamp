@@ -76,3 +76,12 @@ var greetArrowFn = function (greeting) {
 };
 console.log(greetArrowFn("Hello", "Steve", "Bill")); // returns "Hello Steve, Bill!"
 console.log(greetArrowFn("Hello")); // returns "Hello !"
+/**
+TypeScript Data Type - Void
+If a function does not return any value then you can specify 'void' as return type.
+ */
+function sayHi() {
+    console.log('Hi Void!');
+}
+var speech = sayHi();
+console.log(speech); //Output: undefined

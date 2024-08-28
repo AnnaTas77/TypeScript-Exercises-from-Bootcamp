@@ -109,3 +109,14 @@ let greetArrowFn = (greeting: string, ...names: string[]) => {
 console.log(greetArrowFn("Hello", "Steve", "Bill")); // returns "Hello Steve, Bill!"
 
 console.log(greetArrowFn("Hello"));// returns "Hello !"
+
+/**
+TypeScript Data Type - Void
+If a function does not return any value then you can specify 'void' as return type.
+ */
+function sayHi(): void { 
+    console.log('Hi Void!')
+} 
+
+let speech: void = sayHi(); 
+console.log(speech); //Output: undefined
