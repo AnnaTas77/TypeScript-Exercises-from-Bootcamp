@@ -76,31 +76,6 @@ interface GameState {
   player2score: number;
 }
 
-// class GameState {
-//     player1choice: string;
-//     player2choice: string;
-//     result: string;
-//     round: number;
-//     player1score: number;
-//     player2score: number;
-
-//     constructor(player1choice: string,
-//       player2choice: string,
-//       result: string,
-//       round: number,
-//       player1score: number,
-//       player2score: number) {
-//         this.player1choice = player1choice;
-//         this.player2choice = player2choice;
-//         this.result = result;
-//         this.round = round;
-//         this.player1score = player1score;
-//         this.player2score = player2score;
-//       }
-// }
-
-
-
 const score = (gameObject:GameState) => {
   if (gameObject.result.includes("1")) {
     gameObject.player1score += 1;

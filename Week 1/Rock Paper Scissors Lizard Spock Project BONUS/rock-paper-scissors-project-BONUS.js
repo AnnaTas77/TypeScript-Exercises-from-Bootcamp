@@ -92,27 +92,6 @@ var winner = function (player1Choice, player2Choice) {
     }
     return "ERROR: Should never happen!";
 };
-// class GameState {
-//     player1choice: string;
-//     player2choice: string;
-//     result: string;
-//     round: number;
-//     player1score: number;
-//     player2score: number;
-//     constructor(player1choice: string,
-//       player2choice: string,
-//       result: string,
-//       round: number,
-//       player1score: number,
-//       player2score: number) {
-//         this.player1choice = player1choice;
-//         this.player2choice = player2choice;
-//         this.result = result;
-//         this.round = round;
-//         this.player1score = player1score;
-//         this.player2score = player2score;
-//       }
-// }
 var score = function (gameObject) {
     if (gameObject.result.includes("1")) {
         gameObject.player1score += 1;
