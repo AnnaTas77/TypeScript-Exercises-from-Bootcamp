@@ -80,7 +80,10 @@ const newEmployee:Employee = newPerson;
 console.log('New Employee: ', newEmployee)
 
 /** 
-In this TypeScript example above you can see that a variable declared as the Person type is assignable to a variable of the Employee type without any casting, coercion, or even knowing ahead of time that both of these types, as named, existed at all. That last point really cuts to the heart of what is going on here. The names of these types (“Person” and “Employee”) were irrelevant to the compiler because fundamentally they are just aliases for the exact same type. 
+In this TypeScript example above you can see that a variable declared as the Person type is assignable to a variable of the Employee type without any casting, coercion, 
+or even knowing ahead of time that both of these types, as named, existed at all. 
+That last point really cuts to the heart of what is going on here. 
+The names of these types (“Person” and “Employee”) were irrelevant to the compiler because fundamentally they are just aliases for the exact same type. 
 The structure is the type!
  */
 
@@ -104,6 +107,7 @@ interface RandomPerson {
 // Perfectly valid!
 john = jane
 console.log('John after being re-assigned to Jane: ', john);
-// Even though 'RandomPerson' and 'Developer' are distinct interfaces, we can assign a 'Developer' object to a variable of type 'RandomPerson'. This works because they both share the properties name and age.
+// Even though 'RandomPerson' and 'Developer' are distinct interfaces, we can assign a 'Developer' object to a variable of type 'RandomPerson'. 
+//This works because they both share the properties name and age.
 
 
