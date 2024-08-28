@@ -22,8 +22,9 @@ console.log(square([3, 5, 7])) // => [9, 25, 49]
 /*
 Another example would be a database query function that reads a user from the database based on an ID (number), username (string), or attributes (object). 
 
-In this example, the query function is overloaded three times, each time with a different signature. The first signature accepts a single parameter of type number, the second signature accepts a single parameter of type string, and the third signature accepts a single parameter of type Record<string, any>, which is a simple key-value map.
-
+In this example, the query function is overloaded three times, each time with a different signature. 
+The first signature accepts a single parameter of type number, the second signature accepts a single parameter of type string, 
+and the third signature accepts a single parameter of type Record<string, any>, which is a simple key-value map.
 */
 
 // function query(id: number): User;
