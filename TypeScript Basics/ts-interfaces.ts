@@ -170,3 +170,14 @@ interface Box {
 const box: Box = { height: 5, width: 6, scale: 10 };
 
 console.log('Box: ', box)
+
+
+// An inline interface definition for your array that defines every element in that array, whether initially present or introduced later:
+
+let userTestStatus: { id: number, name: string }[] = [
+    { "id": 0, "name": "Available" },
+    { "id": 1, "name": "Ready" },
+    { "id": 2, "name": "Started" }
+];
+
+console.log('userTestStatus: ', userTestStatus)

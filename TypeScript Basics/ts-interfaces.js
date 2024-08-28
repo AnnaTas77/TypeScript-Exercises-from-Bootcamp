@@ -51,7 +51,14 @@ var empObj2 = {
 };
 var personObj = { SSN: 110555444, name: 'James Bond' };
 personObj.name = 'Steve Smith'; // OK
-personObj.SSN = 333666888; // Compiler Error - Cannot assign to 'SSN' because it is a read-only property.
+// personObj.SSN = 333666888; // Compiler Error - Cannot assign to 'SSN' because it is a read-only property.
 console.log('personObj: ', personObj);
 var box = { height: 5, width: 6, scale: 10 };
 console.log('Box: ', box);
+// An inline interface definition for your array that defines every element in that array, whether initially present or introduced later:
+var userTestStatus = [
+    { "id": 0, "name": "Available" },
+    { "id": 1, "name": "Ready" },
+    { "id": 2, "name": "Started" }
+];
+console.log('userTestStatus: ', userTestStatus);

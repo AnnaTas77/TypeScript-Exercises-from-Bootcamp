@@ -1,4 +1,5 @@
-/** GOAL: In index.js, there are a collection of functions which provide functionality for a cash register to be used by a point-of-sale system. Your task is to complete the functions by writing the logic to meet the specifications below:
+/** GOAL: In index.js, there are a collection of functions which provide functionality for a cash register to be used by a point-of-sale system. 
+ * Your task is to complete the functions by writing the logic to meet the specifications below:
 
 Level 1:
 removeItem(name, drawer): Removes a single item from the drawer
@@ -13,15 +14,17 @@ canMakeAmount(target, drawer): Determines whether it is possible to create a spe
 Level 5:
 transaction(cost, paid, drawer): Calculates the change required from a transaction and removes it from the drawer if possible. */
 
-const drawer = require("./drawer");
+import drawer from "./drawer";
 // DO NOT EDIT CODE ABOVE
 
-const coinsArray = ["penny", "nickel", "dime", "quarter"];
-const notesArray = ["one", "five", "ten", "twenty", "hundred"];
+const coinsArray: string[] = ["penny", "nickel", "dime", "quarter"];
+const notesArray: string[] = ["one", "five", "ten", "twenty", "hundred"];
 
-const findInDrawer = (name, arr) => {
+const findInDrawer = (name:string, arr:) => {
   arr.find((currentItem) => currentItem.name === name);
 };
+
+console.log(findInDrawer('penny', drawer))
 
 // Level 1: removeItem and addItem
 
