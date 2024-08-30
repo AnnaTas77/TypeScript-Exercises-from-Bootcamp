@@ -4,7 +4,7 @@ interface UserInterface {
   age: number;
   loggedIn: boolean;
 }
-
+// no need to declare an Interface for every Class
 
 class User implements UserInterface {
   username: string;
@@ -12,14 +12,14 @@ class User implements UserInterface {
   age: number;
   loggedIn: boolean;
 
-  constructor(username, password, age) {
+  constructor(username:string, password:string, age: number) {
     this.username = username;
     this.password = password;
     this.age = age;
     this.loggedIn = false;
   }
 
-  login(password) {
+  login(password: string) {
     if (password === this.password) {
       this.loggedIn = true;
     } else {

@@ -1,5 +1,5 @@
 const { describe, expect, test, it } = require("@jest/globals");
-const User = require("../src/User");
+const User = require("../User.js");
 
 // User tests here
 describe("User class - property tests", () => {
