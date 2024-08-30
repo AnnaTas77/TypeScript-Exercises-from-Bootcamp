@@ -236,4 +236,64 @@ var Snake = /** @class */ (function (_super) {
 }(Reptile));
 var mySnake = new Snake();
 console.log('scaleCount (SOFT PRIVATE): ', mySnake['scaleCount']); //OK because it is a SOFT PRIVATE
-// 'private' in TS also allows access using bracket notation during type checking. This makes private-declared fields potentially easier to access for things like unit tests, with the drawback that these fields are 'soft private' and don’t strictly enforce privacy.
+// 'private' in TS also allows access using bracket notation during type checking. This makes private-declared fields potentially easier to access for things like unit tests, with the drawback that these fields are 'SOFT PRIVATE' and don’t strictly enforce privacy.
+/** In JS - HARD PRIVATE:
+ Unlike TypeScripts’s private, JavaScript’s private fields (#) remain private after compilation and do not provide the previously mentioned escape hatches like bracket notation access, making them HARD PRIVATE.
+
+class Dog {
+  #barkAmount = 0;
+  personality = "happy";
+ 
+  constructor() {}
+}
+ */
+// Static Members ===========================================================
+// Classes may have static members. These members aren’t associated with a particular instance of the class. They can be accessed through the class constructor object itself:
+var CounterClass = /** @class */ (function () {
+    function CounterClass() {
+    }
+    CounterClass.printValue = function () {
+        console.log('The CounterClass static value is: ', CounterClass.value);
+    };
+    CounterClass.value = 10;
+    return CounterClass;
+}());
+console.log(CounterClass.value);
+CounterClass.printValue();
+// Static members can also use the same public, protected, and private visibility modifiers:
+var Configuration = /** @class */ (function () {
+    function Configuration() {
+    }
+    Configuration.setting = 0;
+    return Configuration;
+}());
+// console.log(Configuration.setting); 
+// This will throw an error due to private access
+// Property 'setting' is private and only accessible within class 'Configuration'.
+// Static members are also inherited:
+var BaseGreeting = /** @class */ (function () {
+    function BaseGreeting() {
+    }
+    BaseGreeting.getGreeting = function () {
+        return "Hello world from class BaseGreeting.";
+    };
+    return BaseGreeting;
+}());
+var PersonalizedGreeting = /** @class */ (function (_super) {
+    __extends(PersonalizedGreeting, _super);
+    function PersonalizedGreeting() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.myGreeting = PersonalizedGreeting.getGreeting();
+        return _this;
+    }
+    return PersonalizedGreeting;
+}(BaseGreeting));
+var personalizedGreeting1 = new PersonalizedGreeting();
+console.log(personalizedGreeting1.myGreeting);
+// Special Static Names =============
+// It’s generally not safe/possible to overwrite properties from the Function prototype. Because classes are themselves functions that can be invoked with new, certain static names can’t be used. Function properties like name, length, and call aren’t valid to define as static members:
+var Special = /** @class */ (function () {
+    function Special() {
+    }
+    return Special;
+}());

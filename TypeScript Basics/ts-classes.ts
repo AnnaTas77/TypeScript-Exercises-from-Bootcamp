@@ -274,3 +274,53 @@ class Dog {
   constructor() {}
 }
  */
+
+
+
+// Static Members ===========================================================
+
+// Classes may have static members. These members aren’t associated with a particular instance of the class. They can be accessed through the class constructor object itself:
+
+class CounterClass {
+  static value = 10;
+  static printValue() {
+    console.log('The CounterClass static value is: ', CounterClass.value);
+  }
+}
+console.log(CounterClass.value);
+CounterClass.printValue();
+
+// Static members can also use the same public, protected, and private visibility modifiers:
+
+class Configuration {
+  private static setting = 0;
+}
+// console.log(Configuration.setting); 
+// This will throw an error due to private access
+// Property 'setting' is private and only accessible within class 'Configuration'.
+
+
+// Static members are also inherited:
+
+class BaseGreeting {
+  static getGreeting() {
+    return "Hello world from class BaseGreeting.";
+  }
+}
+class PersonalizedGreeting extends BaseGreeting {
+  myGreeting = PersonalizedGreeting.getGreeting();
+}
+
+const personalizedGreeting1 = new PersonalizedGreeting()
+
+console.log(personalizedGreeting1.myGreeting)
+
+
+// Special Static Names =============
+
+// It’s generally not safe/possible to overwrite properties from the Function prototype. Because classes are themselves functions that can be invoked with new, certain static names can’t be used. Function properties like name, length, and call aren’t valid to define as static members:
+
+class Special {
+  // static name = "S!";
+// Static property 'name' conflicts with built-in property 'Function.name' of constructor function 'Special'.
+}

@@ -51,9 +51,9 @@ class Dog extends Animal {
 }
  
 const dog1 = new Dog();
-// Base class method
+// Animal class method
 dog1.move();
-// ogdog1eriveogdog1 class method
+// Dog class method
 dog1.woof(3);
 
 
