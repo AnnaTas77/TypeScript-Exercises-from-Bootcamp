@@ -39,10 +39,10 @@ const randomNumber = (): string => {
   if (choice === 0) return "rock";
   if (choice === 1) return "paper";
   if (choice === 2) return "scissors";
-  return '';
+  return "";
 };
 
-const pickWinner = (player1Choice:string, player2Choice:string): string => {
+const pickWinner = (player1Choice: string, player2Choice: string): string => {
   if (
     (player1Choice !== "rock" &&
       player1Choice !== "paper" &&
@@ -74,7 +74,7 @@ const pickWinner = (player1Choice:string, player2Choice:string): string => {
     return "Player 2 Wins!";
   }
 
-  return '';
+  return "";
 };
 
 const playerA = randomNumber();

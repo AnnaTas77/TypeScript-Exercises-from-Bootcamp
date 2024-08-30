@@ -4,7 +4,7 @@
 // Imports the built-in readline module provided by Node.js.
 const readline = require("readline/promises");
 
-const randomChoice = ():string  => {
+const randomChoice = (): string => {
   const choice = Math.floor(Math.random() * 5);
   if (choice === 0) return "rock";
   if (choice === 1) return "paper";
@@ -14,7 +14,7 @@ const randomChoice = ():string  => {
   return "lizard";
 };
 
-const winner = (player1Choice:string, player2Choice:string):string => {
+const winner = (player1Choice: string, player2Choice: string): string => {
   if (
     (player1Choice !== "rock" &&
       player1Choice !== "paper" &&
@@ -76,7 +76,7 @@ interface GameState {
   player2score: number;
 }
 
-const score = (gameObject:GameState) => {
+const score = (gameObject: GameState) => {
   if (gameObject.result.includes("1")) {
     gameObject.player1score += 1;
   }
@@ -90,15 +90,14 @@ const score = (gameObject:GameState) => {
   }
 };
 
-
 // Creates a readline interface that we can use in our code.
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-function handleUserInput(userInput:string, gameState: GameState):void {
-  const player2:string = randomChoice();
+function handleUserInput(userInput: string, gameState: GameState): void {
+  const player2: string = randomChoice();
   gameState.result = winner(userInput, player2);
 
   console.log("Player 1 chose: ", userInput);
@@ -114,17 +113,17 @@ function handleUserInput(userInput:string, gameState: GameState):void {
 
 async function askQuestions() {
   const gameState: GameState = {
-    player1choice: '',
-    player2choice: '',
-    result: '',
+    player1choice: "",
+    player2choice: "",
+    result: "",
     round: 0,
     player1score: 0,
     player2score: 0,
-  }
+  };
 
-  let i:number = 10;
+  let i: number = 10;
   while (i > 0) {
-    let userAnswer:string;
+    let userAnswer: string;
     if (gameState.result === "Invalid input. Please try again.") {
       userAnswer = await rl.question(
         "Please make a choice - rock/paper/scissors/lizard/spock? - "
@@ -142,7 +141,4 @@ async function askQuestions() {
 
 askQuestions();
 
-
-module.exports={randomChoice, winner}
-
-
+module.exports = { randomChoice, winner };

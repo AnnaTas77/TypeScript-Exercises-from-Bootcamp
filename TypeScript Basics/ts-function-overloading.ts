@@ -6,18 +6,18 @@ This means that the parameters have different types or the number of parameters 
 function square(x: number): number;
 function square(x: number[]): number[];
 function square(x: number | number[]): number | number[] {
-    if (typeof x === 'number') {
-        return x * x;
-    } else {
-        return x.map(e => e * e);
-    }
+  if (typeof x === "number") {
+    return x * x;
+  } else {
+    return x.map((e) => e * e);
+  }
 }
 
 /*
 Here the first two lines describe the function signature with two different argument types, number and number[]. The actual function implementation begins on the third line, and its signature must be a union of number | number[]. The implementation uses the typeof operator to determine which branch of the implementation to use. */
 
 console.log(square(3)); // => 9
-console.log(square([3, 5, 7])) // => [9, 25, 49]
+console.log(square([3, 5, 7])); // => [9, 25, 49]
 
 /*
 Another example would be a database query function that reads a user from the database based on an ID (number), username (string), or attributes (object). 
