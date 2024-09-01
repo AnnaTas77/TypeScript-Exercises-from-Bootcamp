@@ -14,21 +14,10 @@ canMakeAmount(target, drawer): Determines whether it is possible to create a spe
 Level 5:
 transaction(cost, paid, drawer): Calculates the change required from a transaction and removes it from the drawer if possible. */
 
-const drawer = require("./drawer");
-// console.log('Drawer content:', drawer);
+import drawer from "./drawer";
+import type { Coin, Note, DrawerObject, Drawer } from "./types";
 
-interface DrawerObject {
-  name: string;
-  value: number;
-  quantity: number;
-}
-
-type Drawer = DrawerObject[]; // array of objects
-
-const coinsArray: string[] = ["penny", "nickel", "dime", "quarter"];
-const notesArray: string[] = ["one", "five", "ten", "twenty", "hundred"];
-
-const findInDrawer = (name:string, arr:Drawer):DrawerObject  => {
+const findInDrawer = (name: string, arr: Drawer): DrawerObject => {
   const foundInDrawer = arr.find((currentItem) => currentItem.name === name);
   if (!foundInDrawer) {
     throw new Error(`Item with name ${name} not found in drawer`);
@@ -36,12 +25,11 @@ const findInDrawer = (name:string, arr:Drawer):DrawerObject  => {
   return foundInDrawer;
 };
 
-console.log('Found in drawer: ', findInDrawer('penny', drawer))
+console.log("Found in drawer: ", findInDrawer("penny", drawer));
 
 // Level 1: removeItem and addItem
 
-function removeItem(name: string, drawer:Drawer):Drawer {
-  // Write your code here
+function removeItem(name: DrawerObject["name"], drawer: Drawer): Drawer {
   for (let i = 0; i < drawer.length; i++) {
     const currentInnerObject = drawer[i];
     if (currentInnerObject.name === name) {
@@ -51,11 +39,12 @@ function removeItem(name: string, drawer:Drawer):Drawer {
   }
   return drawer;
 }
-const returnedDrawer = removeItem("penny", drawer); // Removes 1 penny
-console.log('Removed an item - returnedDrawer: ', returnedDrawer);
 
-function addItem(name: string, drawer:Drawer):Drawer {
-  // Write your code here
+const returnedDrawer = removeItem("penny", drawer); // Removes 1 penny
+console.log("Removed an item - returnedDrawer: ", returnedDrawer);
+
+function addItem(name: DrawerObject["name"], drawer: Drawer): Drawer {
+  // 'name' can by of type 'Coin' or 'Note'
   for (let i = 0; i < drawer.length; i++) {
     const currentInnerObject = drawer[i];
     if (currentInnerObject.name === name) {
@@ -66,16 +55,37 @@ function addItem(name: string, drawer:Drawer):Drawer {
   return drawer;
 }
 const updatedDrawer = addItem("nickel", drawer); // Adds 1 nickel
-console.log('Added an item - updatedDrawer: ', updatedDrawer);
+console.log("Added an item - updatedDrawer: ", updatedDrawer);
 
 // Level 2: countCoins and countNotes
 
-function countCoins(drawer:Drawer):number {
+// GUARD FUNCTIONS with Type Predicates
+function isCoin(name: DrawerObject["name"]): name is Coin {
+  return (
+    name === "penny" ||
+    name === "nickel" ||
+    name === "dime" ||
+    name === "quarter"
+  );
+}
+
+// If the 'isNote' function returns 'true', then 'name' is of type 'Note'.
+function isNote(name: DrawerObject["name"]): name is Note {
+  return (
+    name === "one" ||
+    name === "five" ||
+    name === "ten" ||
+    name === "twenty" ||
+    name === "hundred"
+  );
+}
+
+function countCoins(drawer: Drawer): number {
   // Write your code here
   let coinsCount = 0;
   for (let i = 0; i < drawer.length; i++) {
     const currentInnerObject = drawer[i];
-    if (coinsArray.includes(currentInnerObject.name)) {
+    if (isCoin(currentInnerObject.name) && currentInnerObject.quantity > 0) {
       const currentCoinQuantity = currentInnerObject.quantity;
       coinsCount += currentCoinQuantity;
     }
@@ -85,12 +95,11 @@ function countCoins(drawer:Drawer):number {
 
 console.log("Coins Count: ", countCoins(drawer));
 
-function countNotes(drawer:Drawer): number {
-  // Write your code here
+function countNotes(drawer: Drawer): number {
   let notesCount = 0;
   for (let i = 0; i < drawer.length; i++) {
     const currentInnerObject = drawer[i];
-    if (notesArray.includes(currentInnerObject.name)) {
+    if (isNote(currentInnerObject.name) && currentInnerObject.quantity > 0) {
       const currentNotesQuantity = currentInnerObject.quantity;
       notesCount += currentNotesQuantity;
     }
@@ -101,7 +110,7 @@ console.log("Notes Count: ", countNotes(drawer));
 
 // Level 3: sumDrawer
 
-function sumDrawer(drawer:Drawer): string {
+function sumDrawer(drawer: Drawer): string {
   // Write your code here
   let totalSum = 0;
 
@@ -113,11 +122,11 @@ function sumDrawer(drawer:Drawer): string {
   return `$${(totalSum / 100).toFixed(2)}`;
 }
 
-console.log('Total sum: ', sumDrawer(drawer));
+console.log("Total sum: ", sumDrawer(drawer));
 
 // Level 4: canMakeAmount
 
-function canMakeAmount(target:number, drawer: Drawer):boolean {
+function canMakeAmount(target: number, drawer: Drawer): boolean {
   // Write your code here
   for (let i = drawer.length - 1; i >= 0; i--) {
     const currentInnerObject = drawer[i];
@@ -139,13 +148,14 @@ function canMakeAmount(target:number, drawer: Drawer):boolean {
 }
 
 // console.log(canMakeAmount(613, drawer)) // false
-console.log('Can make a specific amount with what is in the drawer - ', canMakeAmount(1651, drawer)); //true
-
+console.log(
+  "Can make a specific amount with what is in the drawer - ",
+  canMakeAmount(1651, drawer)
+); //true
 
 // Level 5: transaction
 
 function transaction(cost: number, paid: number, drawer: Drawer): Drawer {
-
   let change = paid - cost;
 
   // First, add all what the customer paid to the drawer.
@@ -161,8 +171,8 @@ function transaction(cost: number, paid: number, drawer: Drawer): Drawer {
 
   // If no change needs be returned to the customer, terminate the function.
   if (change === 0) return drawer;
-  
-  // If the customer has to receive a change, update the drawer again and return it. 
+
+  // If the customer has to receive a change, update the drawer again and return it.
   for (let i = drawer.length - 1; i >= 0; i--) {
     const currentInnerObject = drawer[i];
 

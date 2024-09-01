@@ -6,7 +6,7 @@ const {
   sumDrawer,
   canMakeAmount,
   transaction,
-} = require("./cash-register-project");
+} = require("../cash-register-project");
 
 const drawer = [
   { name: "penny", value: 1, quantity: 72 },
