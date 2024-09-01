@@ -3,8 +3,9 @@ module.exports = {
   testEnvironment: "node",
   moduleFileExtensions: ["ts", "js", "json", "node"],
   transform: {
-    "^.+\\.ts$": "ts-jest",
+    "^.+\\.ts$": "ts-jest", // Transform TypeScript files
+    "^.+\\.js$": "babel-jest", // Transform JavaScript files (if needed)
   },
-  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$", // Adjust if your test files have a different naming convention
+  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|js)$", // Match both .ts and .js test files
   transformIgnorePatterns: ["<rootDir>/node_modules/"],
 };
