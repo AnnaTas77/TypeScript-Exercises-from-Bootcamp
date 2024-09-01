@@ -1,10 +1,4 @@
-interface UserInterface {
-  username: string;
-  password: string;
-  age: number;
-  loggedIn: boolean;
-}
-// no need to declare an Interface for every Class
+import { UserInterface } from "./types";
 
 class User implements UserInterface {
   username: string;
@@ -12,23 +6,23 @@ class User implements UserInterface {
   age: number;
   loggedIn: boolean;
 
-  constructor(username:string, password:string, age: number) {
+  constructor(username: string, password: string, age: number) {
     this.username = username;
     this.password = password;
     this.age = age;
     this.loggedIn = false;
   }
 
-  login(password: string) {
+  login(password: string): void {
     if (password === this.password) {
       this.loggedIn = true;
     } else {
       throw new Error("Incorrect password.");
     }
   }
-  logout() {
+  logout(): void {
     this.loggedIn = false;
   }
 }
 
-module.exports = User;
+export default User;

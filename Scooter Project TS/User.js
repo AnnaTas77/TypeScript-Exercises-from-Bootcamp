@@ -1,4 +1,5 @@
-// no need to declare an Interface for every Class
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var User = /** @class */ (function () {
     function User(username, password, age) {
         this.username = username;
@@ -19,4 +20,4 @@ var User = /** @class */ (function () {
     };
     return User;
 }());
-module.exports = User;
+exports.default = User;

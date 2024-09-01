@@ -1,15 +1,25 @@
-class Scooter {
-  static nextSerial = 1;
-  constructor(station) {
+import { UserInterface, ScooterInterface } from "./types";
+
+class Scooter implements ScooterInterface {
+  static nextSerial: number = 1;
+  station: string | null;
+  user: UserInterface | null;
+  serial: number;
+  charge: number = 100;
+  isBroken: boolean = false;
+
+  constructor(station: string, charge?: number) {
     this.station = station;
     this.user = null;
     this.serial = Scooter.nextSerial;
     Scooter.nextSerial++;
-    this.charge = 100;
-    this.isBroken = false;
+    if (charge !== undefined) {
+      this.charge = charge;
+    }
+    // The initialization of 'isBroken' is not needed here since it's already initialized in the class field.
   }
 
-  rent(user) {
+  rent(user: UserInterface): void {
     if (this.charge < 20) {
       throw new Error("The scooter needs to charge.");
     }
@@ -22,7 +32,7 @@ class Scooter {
     }
   }
 
-  dock(station) {
+  dock(station: string): void {
     this.station = station;
     this.user = null;
   }
@@ -32,4 +42,4 @@ class Scooter {
   // requestRepair() {}
 }
 
-module.exports = Scooter;
+export default Scooter;

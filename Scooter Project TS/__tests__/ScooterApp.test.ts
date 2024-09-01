@@ -1,8 +1,8 @@
 const { describe, expect, test, it } = require("@jest/globals");
 
-const User = require("../src/User");
-const ScooterApp = require("../src/ScooterApp");
-const Scooter = require("../src/Scooter");
+import User from "../User";
+import Scooter from "../Scooter";
+import ScooterApp from "../ScooterApp";
 
 // ScooterApp tests here
 
@@ -166,7 +166,14 @@ describe("rentScooter method tests", () => {
     scooterApp.rentScooter(newScooter, newUser);
 
     expect(newScooter.station).toBeNull();
-    expect(allStations[currentScooterStation]).toEqual([]);
+
+    if (currentScooterStation !== null && currentScooterStation !== undefined) {
+      expect(allStations[currentScooterStation].length).toBe(0);
+    } else {
+      // Handle the case where currentScooterStation is null or undefined
+      // For example, you might want to throw an error or skip the test
+      throw new Error("currentScooterStation is null or undefined");
+    }
   });
 
   it("if the scooter is already rented, it should throw an error", () => {

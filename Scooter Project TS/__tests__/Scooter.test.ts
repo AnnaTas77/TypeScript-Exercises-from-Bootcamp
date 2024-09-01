@@ -1,6 +1,6 @@
 const { describe, expect, test, it } = require("@jest/globals");
-const Scooter = require("../src/Scooter");
-const User = require("../src/User");
+import Scooter from "../Scooter";
+import User from "../User";
 
 // typeof scooter === object
 describe("Scooter Class Properties", () => {
@@ -41,14 +41,14 @@ describe("Scooter Class Properties", () => {
 describe("Scooter Rent Method", () => {
   it("accepts user instance of the User class as an argument", () => {
     const scooter = new Scooter("Battersea Power Station");
-    const user1 = new User("sam123", 1234, 25);
+    const user1 = new User("sam123", '1234', 25);
     scooter.rent(user1);
     expect(scooter.user).toEqual(user1);
   });
 
   it("assigns a scooter to a user if it is charged and not broken", () => {
     const scooter = new Scooter("Battersea Power Station");
-    const user1 = new User("sam123", 1234, 25);
+    const user1 = new User("sam123", '1234', 25);
     scooter.rent(user1);
     expect(scooter.station).toBeNull();
     expect(scooter.user).toBe(user1);
@@ -56,7 +56,7 @@ describe("Scooter Rent Method", () => {
 
   it("throws an error if the scooter is not charged", () => {
     const scooter = new Scooter("Battersea Power Station");
-    const user1 = new User("sam123", 1234, 25);
+    const user1 = new User("sam123", '1234', 25);
     scooter.charge = 10;
     function attemptRental() {
       scooter.rent(user1);
@@ -70,7 +70,7 @@ describe("Scooter Rent Method", () => {
 
   it("throws an error if the scooter is broken", () => {
     const scooter = new Scooter("Battersea Power Station");
-    const user1 = new User("sam123", 1234, 25);
+    const user1 = new User("sam123", '1234', 25);
     scooter.isBroken = true;
     function attemptRental() {
       scooter.rent(user1);
@@ -86,7 +86,7 @@ describe("Scooter Rent Method", () => {
 describe("Scooter Dock Method", () => {
   test("should be able to return the scooter to a station", () => {
     const scooter = new Scooter("Battersea Power Station");
-    const user1 = new User("sam123", 1234, 25);
+    const user1 = new User("sam123", '1234', 25);
     scooter.rent(user1);
     scooter.dock("London Bridge");
     expect(scooter.station).toBe("London Bridge");

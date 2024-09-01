@@ -1,9 +1,15 @@
-const Scooter = require("./Scooter");
-const User = require("./User");
+import Scooter from "./Scooter";
+import User from "./User";
+import {
+  StationsType,
+  RegisteredUsers,
+  ScooterAppInterface,
+  ScooterInterface,
+  UserInterface,
+} from "./types";
 
-class ScooterApp {
-  // ScooterApp code here
-  stations = {
+class ScooterApp implements ScooterAppInterface {
+  stations: StationsType = {
     "Battersea Power Station": [],
     "London Bridge": [],
     Victoria: [],
@@ -11,9 +17,9 @@ class ScooterApp {
     Richmond: [],
   };
 
-  registeredUsers = {};
+  registeredUsers: RegisteredUsers = {};
 
-  registerUser(username, password, age) {
+  registerUser(username: string, password: string, age: number): UserInterface {
     const newUser = new User(username, password, age);
     const currentUserName = newUser.username;
 
@@ -35,7 +41,7 @@ class ScooterApp {
     return newUser;
   }
 
-  loginUser(username, password) {
+  loginUser(username: string, password: string): boolean {
     const currentUser = this.registeredUsers[username];
     if (!currentUser) {
       throw new Error("The username is incorrect or this user does not exist.");
@@ -48,7 +54,7 @@ class ScooterApp {
     return currentUser.loggedIn;
   }
 
-  logoutUser(username) {
+  logoutUser(username: string): boolean {
     const currentUser = this.registeredUsers[username];
     if (!currentUser) {
       throw new Error("No such user is logged in.");
@@ -60,7 +66,7 @@ class ScooterApp {
     return currentUser.loggedIn;
   }
 
-  createScooter(station) {
+  createScooter(station: string): ScooterInterface {
     if (!this.stations.hasOwnProperty(station)) {
       throw new Error("No such station.");
     }
@@ -73,8 +79,8 @@ class ScooterApp {
     return newScooter;
   }
 
-  dockScooter(scooter, station) {
-    if (!Object.hasOwn(this.stations, station)) {
+  dockScooter(scooter: ScooterInterface, station: string): void {
+    if (!this.stations.hasOwnProperty(station)) {
       throw new Error("No such station.");
     }
 
@@ -90,12 +96,18 @@ class ScooterApp {
     console.log("The scooter is docked.");
   }
 
-  //   Locate the given scooter at one of the stations, and remove it from that station. Rent it to the user. Log scooter is rented to the console.
+  // Locate the given scooter at one of the stations, and remove it from that station. Rent it to the user. Log scooter is rented to the console.
   // If the scooter is already rented, throw the error scooter already rented.
-  rentScooter(scooter, user) {
+  rentScooter(scooter: ScooterInterface, user: UserInterface): void {
     if (scooter.user !== null) {
-      console.log("here");
       throw new Error("Scooter already rented.");
+    }
+
+    if (scooter.station === null) {
+      // In interface 'ScooterInterface' - station can be 'string' or 'null'
+      // We want to throw an error if it is 'null'
+      // This should resolve the Type 'null' cannot be used as an index type error.
+      throw new Error("Scooter is not located at any station.");
     }
 
     const locatedScooterArray = this.stations[scooter.station];
@@ -112,7 +124,7 @@ class ScooterApp {
     console.log("Scooter is rented.");
   }
 
-  print() {
+  print(): void {
     console.log("Stations: ", this.stations);
     console.log("Registered Users: ", this.registeredUsers);
   }
@@ -122,4 +134,4 @@ class ScooterApp {
 // scooterApp.createScooter("Victoria");
 // scooterApp.print();
 
-module.exports = ScooterApp;
+export default ScooterApp;
