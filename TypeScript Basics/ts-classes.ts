@@ -57,7 +57,7 @@ g.greet();
 // g.name = "also not ok";
 // Cannot assign to 'name' because it is a read-only property.
 
-class Employee {
+class EmployeeZ {
   empCode: number;
   empName: string;
 
@@ -67,10 +67,10 @@ class Employee {
   }
 }
 
-const newEmployee = new Employee(123, "Anna");
+const newEmployeeZ = new EmployeeZ(123, "Anna");
 
 console.log(
-  `newEmployee name: ${newEmployee.empName}, and code: ${newEmployee.empCode}.`
+  `newEmployee name: ${newEmployeeZ.empName}, and code: ${newEmployeeZ.empCode}.`
 );
 
 // 'implements' Clauses
@@ -307,3 +307,41 @@ class Special {
   // static name = "S!";
   // Static property 'name' conflicts with built-in property 'Function.name' of constructor function 'Special'.
 }
+
+// EXAMPLE
+
+interface Thing1 {
+  id: number;
+}
+
+class User implements Thing1 {
+  name: string;
+  id: number;
+
+  constructor() {
+    this.name = "";
+    this.id = 0;
+  }
+}
+
+class Doggo implements Thing1 {
+  race: string;
+  id: number;
+
+  constructor() {
+    this.race = "";
+    this.id = 0;
+  }
+}
+
+function test1(u: Thing1) {
+  console.log(u);
+}
+
+test1(new Doggo()); // Doggo { race: '', id: 0 }
+
+function test2(u: Doggo) {
+  console.log(u);
+}
+
+test2(new Doggo()); // Doggo { race: '', id: 0 }

@@ -109,3 +109,11 @@ function sayHi(): void {
 
 let speech: void = sayHi();
 console.log(speech); //Output: undefined
+
+// ARROW FUNCTION with Function Signature
+
+let tripleVariable: (x: number) => number; //function signature
+// ARROW FUNCTION
+tripleVariable = (x: number) => x * 3;
+
+console.log("tripleVariable: ", tripleVariable(3));

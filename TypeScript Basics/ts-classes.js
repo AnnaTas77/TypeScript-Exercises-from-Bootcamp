@@ -28,10 +28,10 @@ var GoodGreeter = /** @class */ (function () {
     }
     return GoodGreeter;
 }());
-var greeter1 = new GoodGreeter('Anna');
-console.log('greeter1: ', greeter1);
+var greeter1 = new GoodGreeter("Anna");
+console.log("greeter1: ", greeter1);
 // readonly
-// Fields may be prefixed with the readonly modifier. 
+// Fields may be prefixed with the readonly modifier.
 // This prevents assignments to the field outside of the constructor.
 var WorldGreeter = /** @class */ (function () {
     function WorldGreeter(otherName) {
@@ -48,28 +48,28 @@ var WorldGreeter = /** @class */ (function () {
     WorldGreeter.prototype.err = function () {
         // this.name = "not ok";
         // Cannot assign to 'name' because it is a read-only property.
-        console.log('Error method from class WorldGreeter.');
+        console.log("Error method from class WorldGreeter.");
     };
     WorldGreeter.prototype.greet = function () {
         console.log("Hello ".concat(this.name, "!"));
     };
     return WorldGreeter;
 }());
-var g = new WorldGreeter('Universe');
+var g = new WorldGreeter("Universe");
 console.log(g);
 g.err();
 g.greet();
 // g.name = "also not ok";
 // Cannot assign to 'name' because it is a read-only property.
-var Employee = /** @class */ (function () {
-    function Employee(code, name) {
+var EmployeeZ = /** @class */ (function () {
+    function EmployeeZ(code, name) {
         this.empCode = code;
         this.empName = name;
     }
-    return Employee;
+    return EmployeeZ;
 }());
-var newEmployee = new Employee(123, "Anna");
-console.log("newEmployee name: ".concat(newEmployee.empName, ", and code: ").concat(newEmployee.empCode, "."));
+var newEmployeeZ = new EmployeeZ(123, "Anna");
+console.log("newEmployee name: ".concat(newEmployeeZ.empName, ", and code: ").concat(newEmployeeZ.empCode, "."));
 var Sonar = /** @class */ (function () {
     function Sonar() {
     }
@@ -133,7 +133,7 @@ var Thing = /** @class */ (function () {
     return Thing;
 }());
 // TypeScript - Abstract Class =======================================
-// Define an abstract class in Typescript using the abstract keyword. 
+// Define an abstract class in Typescript using the abstract keyword.
 // Abstract classes are mainly for inheritance where other classes may derive from them. We cannot create an instance of an abstract class.
 // Member Visibility =================================
 // You can use TypeScript to control whether certain methods or properties are visible to code outside the class.
@@ -197,8 +197,8 @@ var Human = /** @class */ (function (_super) {
     return Human;
 }(Mammal));
 var individual = new Human();
-console.log('Individual lifespan: ', individual.lifespan); // OK
-// Note that 'Human' was already able to freely read and write 'lifespan', so this doesn’t meaningfully alter the “security” of this situation. 
+console.log("Individual lifespan: ", individual.lifespan); // OK
+// Note that 'Human' was already able to freely read and write 'lifespan', so this doesn’t meaningfully alter the “security” of this situation.
 // The main thing to note here is that in the derived class, we need to be careful to repeat the protected modifier if this exposure isn’t intentional.
 // private ======================================
 // 'private' is like 'protected', but doesn’t allow access to the member even from subclasses.
@@ -210,7 +210,7 @@ var Bird = /** @class */ (function () {
 }());
 var sparrow = new Bird();
 // Can't access from outside the class
-// console.log(sparrow.featherCount); 
+// console.log(sparrow.featherCount);
 // Property 'featherCount' is private and only accessible within class 'Bird'.
 var Reptile = /** @class */ (function () {
     function Reptile() {
@@ -235,7 +235,7 @@ var Snake = /** @class */ (function (_super) {
     return Snake;
 }(Reptile));
 var mySnake = new Snake();
-console.log('scaleCount (SOFT PRIVATE): ', mySnake['scaleCount']); //OK because it is a SOFT PRIVATE
+console.log("scaleCount (SOFT PRIVATE): ", mySnake["scaleCount"]); //OK because it is a SOFT PRIVATE
 // 'private' in TS also allows access using bracket notation during type checking. This makes private-declared fields potentially easier to access for things like unit tests, with the drawback that these fields are 'SOFT PRIVATE' and don’t strictly enforce privacy.
 /** In JS - HARD PRIVATE:
  Unlike TypeScripts’s private, JavaScript’s private fields (#) remain private after compilation and do not provide the previously mentioned escape hatches like bracket notation access, making them HARD PRIVATE.
@@ -253,7 +253,7 @@ var CounterClass = /** @class */ (function () {
     function CounterClass() {
     }
     CounterClass.printValue = function () {
-        console.log('The CounterClass static value is: ', CounterClass.value);
+        console.log("The CounterClass static value is: ", CounterClass.value);
     };
     CounterClass.value = 10;
     return CounterClass;
@@ -267,7 +267,7 @@ var Configuration = /** @class */ (function () {
     Configuration.setting = 0;
     return Configuration;
 }());
-// console.log(Configuration.setting); 
+// console.log(Configuration.setting);
 // This will throw an error due to private access
 // Property 'setting' is private and only accessible within class 'Configuration'.
 // Static members are also inherited:
@@ -297,3 +297,25 @@ var Special = /** @class */ (function () {
     }
     return Special;
 }());
+var User = /** @class */ (function () {
+    function User() {
+        this.name = "";
+        this.id = 0;
+    }
+    return User;
+}());
+var Doggo = /** @class */ (function () {
+    function Doggo() {
+        this.race = "";
+        this.id = 0;
+    }
+    return Doggo;
+}());
+function test1(u) {
+    console.log(u);
+}
+test1(new Doggo()); // Doggo { race: '', id: 0 }
+function test2(u) {
+    console.log(u);
+}
+test2(new Doggo()); // Doggo { race: '', id: 0 }

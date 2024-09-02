@@ -15,32 +15,32 @@ Compile your TypeScript code using the tsc command and run the resulting JavaScr
 function sumNumbers(num1, num2) {
     return num1 + num2;
 }
-console.log('sumNumbers: ', sumNumbers(5, 7));
-// Anonymous Function 
+console.log("sumNumbers: ", sumNumbers(5, 7));
+// Anonymous Function
 var sum = function (x, y) {
     return x + y;
 };
-console.log('Sum: ', sum(2, 3));
+console.log("Sum: ", sum(2, 3));
 // Arrow Function
 var greeting = function (name) {
     return "Hello, ".concat(name, "!");
 };
-console.log('Greeting: ', greeting('Anna'));
+console.log("Greeting: ", greeting("Anna"));
 // Optional Parameter 'name'
 function greetSomeone(greeting, name) {
-    return greeting + ' ' + name + '!';
+    return greeting + " " + name + "!";
 }
-console.log(greetSomeone('Hello', 'Steve')); //OK, returns "Hello Steve!"
-console.log(greetSomeone('Hi')); // OK, returns "Hi undefined!".
+console.log(greetSomeone("Hello", "Steve")); //OK, returns "Hello Steve!"
+console.log(greetSomeone("Hi")); // OK, returns "Hi undefined!".
 // greetSomeone('Hi','Bill','Gates'); //Compiler Error: Expected 2 arguments, but got 3.
 // Default Parameter
 function greetWithDefaultParam(name, greeting) {
     if (greeting === void 0) { greeting = "Hello"; }
-    return greeting + ' ' + name + '!';
+    return greeting + " " + name + "!";
 }
-console.log(greetWithDefaultParam('Steve')); //"Hello Steve!"
-console.log(greetWithDefaultParam('Steve', 'Hi')); //"Hi Steve!".
-console.log(greetWithDefaultParam('Bill')); //"Hello Bill!"
+console.log(greetWithDefaultParam("Steve")); //"Hello Steve!"
+console.log(greetWithDefaultParam("Steve", "Hi")); //"Hi Steve!".
+console.log(greetWithDefaultParam("Bill")); //"Hello Bill!"
 function add(a, b) {
     return a + b;
 }
@@ -49,8 +49,8 @@ function add(a, b) {
 The last function should have the function implementation. Since the return type can be either string or number as per the first two function declarations, we must use compatible parameters and return type as any in the function definition.
 
 Function overloading with different number of parameters and types with same name is not supported. */
-console.log(add("Hello ", "Steve")); // returns "Hello Steve" 
-console.log(add(10, 20)); // returns 30 
+console.log(add("Hello ", "Steve")); // returns "Hello Steve"
+console.log(add(10, 20)); // returns 30
 // Rest Parameters
 /** When the number of parameters that a function will receive is not known or can vary, we can use rest parameters.
  We can pass zero or more arguments to the rest parameter. The compiler will create an array of arguments with the rest parameter name provided by us.
@@ -81,7 +81,12 @@ TypeScript Data Type - Void
 If a function does not return any value then you can specify 'void' as return type.
  */
 function sayHi() {
-    console.log('Hi Void!');
+    console.log("Hi Void!");
 }
 var speech = sayHi();
 console.log(speech); //Output: undefined
+// ARROW FUNCTION with Function Signature
+var tripleVariable; //function signature
+// ARROW FUNCTION
+tripleVariable = function (x) { return x * 3; };
+console.log("tripleVariable: ", tripleVariable(3));
