@@ -1,3 +1,12 @@
+/**
+Generics
+
+Learn about generics in TypeScript, and how they can be used to create flexible and reusable code that works with a variety of data types.
+Experiment with defining and using generic functions and classes in your TypeScript code.
+Learn about using constraints to restrict the types that can be used with a generic function or class. 
+For example, you might use a constraint to ensure that a generic function can only be used with objects that have a certain property.
+ */
+
 // GENERICS in a Function
 
 function getFirstElement<ElementType>(arr: ElementType[]) {
