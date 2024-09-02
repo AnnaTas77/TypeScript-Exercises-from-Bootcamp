@@ -54,7 +54,7 @@ console.log("Point2: ", logPoint(point2)); // logs "X is: 12, Y is: 264"
 
 // Structural Type System 2
 
-type Person = {
+type PersonY = {
   name: string;
   DoB: Date;
 };
@@ -64,8 +64,8 @@ type Employee = {
   DoB: Date;
 };
 
-const newPerson: Person = {
-  name: "Samatha",
+const newPerson: PersonY = {
+  name: "Samantha",
   DoB: new Date(1953, 9, 15),
 };
 

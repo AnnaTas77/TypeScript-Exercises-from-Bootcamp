@@ -8,30 +8,35 @@ Compile your TypeScript code using the tsc command and run the resulting JavaScr
 */
 var myBlogPost = {
     id: 1,
-    title: 'Learning TypeScript',
-    author: 'Anna T.',
+    title: "Learning TypeScript",
+    author: "Anna T.",
 };
-console.log('myBlogPost: ', myBlogPost);
+console.log("myBlogPost: ", myBlogPost);
 function logPoint(p) {
     return "X is: ".concat(p.x, ", Y is: ").concat(p.y);
 }
 var point1 = { x: 12, y: 26 };
-console.log('Point1: ', logPoint(point1)); // logs "X is: 12, Y is: 26"
-// The point variable is never declared to be a Point type. 
+console.log("Point1: ", logPoint(point1)); // logs "X is: 12, Y is: 26"
+// The point variable is never declared to be a Point type.
 // However, TypeScript compares the shape of 'point1' to the shape of 'Point' in the type-check. They have the same shape, so the code passes.
 // The shape-matching only requires a subset of the object’s fields to match.
 var point2 = { x: 12, y: 264, z: 89 };
-console.log('Point2: ', logPoint(point2)); // logs "X is: 12, Y is: 264"
+console.log("Point2: ", logPoint(point2)); // logs "X is: 12, Y is: 264"
 var newPerson = {
-    name: 'Samatha',
-    DoB: new Date(1953, 9, 15)
+    name: "Samantha",
+    DoB: new Date(1953, 9, 15),
 };
-console.log('New Person: ', newPerson);
+console.log("New Person: ", newPerson);
 var newEmployee = newPerson;
-console.log('New Employee: ', newEmployee);
+console.log("New Employee: ", newEmployee);
 var john = { name: "John Doe", age: 30 };
-var jane = { name: "Jane Smith", age: 28, codingLanguages: ["TypeScript", "Python"] };
+var jane = {
+    name: "Jane Smith",
+    age: 28,
+    codingLanguages: ["TypeScript", "Python"],
+};
 // Perfectly valid!
 john = jane;
-console.log('John after being re-assigned to Jane: ', john);
-// Even though 'RandomPerson' and 'Developer' are distinct interfaces, we can assign a 'Developer' object to a variable of type 'RandomPerson'. This works because they both share the properties name and age.
+console.log("John after being re-assigned to Jane: ", john);
+// Even though 'RandomPerson' and 'Developer' are distinct interfaces, we can assign a 'Developer' object to a variable of type 'RandomPerson'.
+//This works because they both share the properties name and age.
