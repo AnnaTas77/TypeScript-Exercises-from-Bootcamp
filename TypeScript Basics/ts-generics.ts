@@ -4,12 +4,16 @@ function getFirstElement<ElementType>(arr: ElementType[]) {
   return arr[0];
 }
 
-const numbers = [1, 2, 3];
-const firstNum = getFirstElement(numbers);
+const numbers = [1, 2, 3]; // the type on hover is 'number[]'
+const firstNum = getFirstElement(numbers); // the type on hover is 'number'
 
-const strings = ["one", "two", "three"];
-const firstString = getFirstElement(strings);
+const strings = ["one", "two", "three"]; // the type on hover is 'string[]'
+const firstString = getFirstElement(strings); // the type on hover is 'string'
 
+console.log("The first element with numbers: ", firstNum);
+console.log("The first element with strings: ", firstString);
+
+// ===============================================================
 // GENERICS in a Type
 
 type ApiResponse<Data> = {
