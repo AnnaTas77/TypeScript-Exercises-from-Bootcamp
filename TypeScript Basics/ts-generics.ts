@@ -102,3 +102,68 @@ const responseOverwritingDefault: strictResponseWithDefault<{ name: string }> =
     },
     isError: false,
   };
+
+// Generics and Interfaces
+
+
+// EXAMPLE - SAME ENDPOINT with DIFFERENT QUERIES
+interface UserArticle {
+  title: string;
+  author: string;
+}
+
+interface AdminArticle {
+  title: string;
+  author: string;
+  content: string;
+  comments: string[];
+}
+
+async function fetchData<T>(
+  endpoint: string,
+  role: "user" | "admin"
+): Promise<T> {
+  const response = await fetch(`${endpoint}?role=${role}`); // Example of using a query parameter
+  const data = (await response.json()) as T;
+  return data;
+}
+
+// Usage examples
+const userData = await fetchData<UserArticle>(
+  "https://api.example.com/articles",
+  "user"
+); // Fetches user data - Waits for the Promise to resolve and returns data of type "UserArticle"
+const adminData = await fetchData<AdminArticle>(
+  "https://api.example.com/articles",
+  "admin"
+); // Fetches admin data - Waits for the Promise to resolve and returns data of type "AdminArticle"
+
+
+// =========================================================================================================
+
+// EXAMPLE - DIFFERENT ENDPOINTS with PARAMS
+/**
+ * Fetches data from the specified API endpoint and returns it as the specified type.
+ *
+ * param endpoint - The URL of the API endpoint to fetch data from.
+ * returns A promise that resolves to the data of type T retrieved from the API.
+ */
+async function fetchApiData<T>(endpoint: string): Promise<T> {
+  const response = await fetch(endpoint);
+
+  // Check if the response is successful (status code 200-299)
+  if (!response.ok) {
+    throw new Error(`Error fetching data: ${response.statusText}`);
+  }
+
+  const data = (await response.json()) as T;
+  return data;
+}
+
+// Usage examples
+// const userArticleData = await fetchApiData<UserArticle>(
+//   "https://api.example.com/articles/user"
+// ); // Fetches user article data
+// const adminArticleData = await fetchApiData<AdminArticle>(
+//   "https://api.example.com/articles/admin"
+// ); // Fetches admin article data
