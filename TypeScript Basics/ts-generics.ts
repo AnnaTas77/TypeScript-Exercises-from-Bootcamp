@@ -105,7 +105,6 @@ const responseOverwritingDefault: strictResponseWithDefault<{ name: string }> =
 
 // Generics and Interfaces
 
-
 // EXAMPLE - SAME ENDPOINT with DIFFERENT QUERIES
 interface UserArticle {
   title: string;
@@ -129,15 +128,14 @@ async function fetchData<T>(
 }
 
 // Usage examples
-const userData = await fetchData<UserArticle>(
-  "https://api.example.com/articles",
-  "user"
-); // Fetches user data - Waits for the Promise to resolve and returns data of type "UserArticle"
-const adminData = await fetchData<AdminArticle>(
-  "https://api.example.com/articles",
-  "admin"
-); // Fetches admin data - Waits for the Promise to resolve and returns data of type "AdminArticle"
-
+// const userData = await fetchData<UserArticle>(
+//   "https://api.example.com/articles",
+//   "user"
+// ); // Fetches user data - Waits for the Promise to resolve and returns data of type "UserArticle"
+// const adminData = await fetchData<AdminArticle>(
+//   "https://api.example.com/articles",
+//   "admin"
+// ); // Fetches admin data - Waits for the Promise to resolve and returns data of type "AdminArticle"
 
 // =========================================================================================================
 
